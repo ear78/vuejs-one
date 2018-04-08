@@ -12,6 +12,17 @@
             <p>{{ sayHello() }}</p>
             <!-- v-bind directive/ no curly braces within html attrs -->
             <a v-bind:href="link">Google</a>
+
+            <!-- v-html directive -->
+            <p v-html="finishedLink"></p>
+
+            <!-- v-on:click event handlers -->
+            <button v-on:click="increase" type="button" name="button">
+                +
+            </button>
+            <button v-on:click="decrease" type="button" name="button">-</button>
+            <p>{{ counter }}</p>
+            <p v-on:mousemove="updateCoordinate">{{x}} / {{y}}</p>
         </div>
 
     <script type="text/javascript">
@@ -19,7 +30,11 @@
             el: '#app',
             data: {
                 title: 'Hello World',
-                link: 'http://google.com'
+                link: 'http://google.com',
+                finishedLink: '<a href="http://google.com">Google</a>',
+                counter: 0,
+                x: 0,
+                y: 0
             },
             methods: {
                 changeTitle: function(event){
@@ -27,7 +42,18 @@
                 },
                 sayHello: function(){
                     return 'Hello';
+                },
+                increase: function(){
+                    this.counter++;
+                },
+                decrease: function(){
+                    this.counter--;
+                },
+                updateCoordinate: function(event){
+                    this.x = event.clientX;
+                    this.y = event.clientY;
                 }
+
             }
         })
     </script>
