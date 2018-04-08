@@ -8,17 +8,25 @@
     <body>
         <div id="app">
             <input type="text" name="" value="" v-on:input="changeTitle">
-            <p>{{ title }}</p>
+            <h1>{{ title }}</h1>
+            <p>{{ sayHello() }}</p>
+            <!-- v-bind directive/ no curly braces within html attrs -->
+            <a v-bind:href="link">Google</a>
         </div>
+
     <script type="text/javascript">
         new Vue({
             el: '#app',
             data: {
-                title: 'Hello World'
+                title: 'Hello World',
+                link: 'http://google.com'
             },
             methods: {
                 changeTitle: function(event){
                     this.title = event.target.value;
+                },
+                sayHello: function(){
+                    return 'Hello';
                 }
             }
         })
