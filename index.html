@@ -22,7 +22,22 @@
             </button>
             <button v-on:click="decrease" type="button" name="button">-</button>
             <p>{{ counter }}</p>
-            <p v-on:mousemove="updateCoordinate">{{x}} / {{y}}</p>
+            <p v-on:mousemove="updateCoordinate">{{x}} / {{y}}
+                <!-- modifier event stop propagation or .prevent for preventDefault() -->
+                - <span v-on:mousemove.stop>Dead Spot</span>
+            </p>
+            <p>
+                <!-- modifier key on enter triggers alert keyup.enter -->
+                <input v-on:keyup.enter="alertMe" type="text" name="" value="">
+            </p>
+
+            <!-- exercises -->
+            <button v-on:click="alertBtn" type="button" name="button">Alert</button>
+
+            <input v-on:input="updateInput" type="text" name="" value="">
+            <p>{{ val }}</p>
+
+            <input v-on:keyup.enter="alertEnt" type="text" name="" value="">
         </div>
 
     <script type="text/javascript">
@@ -34,7 +49,8 @@
                 finishedLink: '<a href="http://google.com">Google</a>',
                 counter: 0,
                 x: 0,
-                y: 0
+                y: 0,
+                val: ''
             },
             methods: {
                 changeTitle: function(event){
@@ -52,6 +68,18 @@
                 updateCoordinate: function(event){
                     this.x = event.clientX;
                     this.y = event.clientY;
+                },
+                alertMe: function(){
+                    alert('hello alert me')
+                },
+                alertBtn: function(){
+                    alert('I just got clicked!')
+                },
+                updateInput: function(event){
+                    this.val = event.target.value;
+                },
+                alertEnt: function(){
+                    alert('You Hit Enter!')
                 }
 
             }
