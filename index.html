@@ -12,6 +12,7 @@
             <p>{{ sayHello() }}</p>
             <!-- v-bind directive/ no curly braces within html attrs -->
             <a v-bind:href="link">Google</a>
+            <!-- <a :href="link">Google</a>  can also be :href -->
 
             <!-- v-html directive -->
             <p v-html="finishedLink"></p>
@@ -32,12 +33,16 @@
             </p>
 
             <!-- exercises -->
-            <button v-on:click="alertBtn" type="button" name="button">Alert</button>
+            <button @click="alertBtn" type="button" name="button">Alert</button>
 
             <input v-on:input="updateInput" type="text" name="" value="">
             <p>{{ val }}</p>
 
             <input v-on:keyup.enter="alertEnt" type="text" name="" value="">
+
+            <!-- using v-model for two way data binding -->
+            <input v-model="name" type="text" name="" value="">
+            <p>{{name}}</p>
         </div>
 
     <script type="text/javascript">
@@ -50,7 +55,8 @@
                 counter: 0,
                 x: 0,
                 y: 0,
-                val: ''
+                val: '',
+                name: 'Elliot'
             },
             methods: {
                 changeTitle: function(event){
