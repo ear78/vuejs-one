@@ -5,6 +5,27 @@
         <title></title>
         <script type="text/javascript" src="./vue.js"></script>
     </head>
+
+    <style media="screen">
+        .demo {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            display: inline-block;
+            transition: all .2s ease;
+        }
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
     <body>
         <div id="app">
             <input type="text" name="" value="" v-on:input="changeTitle">
@@ -43,9 +64,67 @@
             <!-- using v-model for two way data binding -->
             <input v-model="name" type="text" name="" value="">
             <p>{{name}}</p>
+
+
+        </div>
+        <div id="css">
+            <div class="demo"
+            v-on:click="attachRed = !attachRed"
+            :class="divClasses"></div>
+            <hr>
+            <!-- use model to set class -->
+            <div class="demo" :class="color">
+
+            </div>
+            <input v-model="color" type="text" name="" value="">
+            <hr>
+            <!-- set style property -->
+            <div class="demo" :style="{backgroundColor: yColor}">
+
+            </div>
+            <input v-model="yColor" type="text" name="" value="">
+
+        </div>
+
+        <div id="conditional" class="">
+            <!-- conditionally render para with show prop -->
+            <p v-if="show">You can see me!</p>
+            <!-- if else condition based rendering -->
+            <p v-else>Now you also see me?</p>
+            <p v-show="vShow">I'm using v-show</p>
+            <button @click="show = !show" type="button" name="button">use v-if</button>
+            <button @click="vShow = !vShow" type="button" name="button">use v-show</button>
         </div>
 
     <script type="text/javascript">
+
+        //conditional
+        new Vue({
+            el: '#conditional',
+            data: {
+                show: true,
+                vShow: true
+            }
+        })
+
+        // css attachment
+        new Vue({
+            el: '#css',
+            data: {
+                name: 'Elliot Richardson',
+                attachRed: false,
+                yColor: 'yellow',
+                color: 'green'
+            },
+            computed: {
+                divClasses: function(){
+                    return {
+                        red: this.attachRed
+                    }
+                }
+            }
+        })
+
         new Vue({
             el: '#app',
             data: {
